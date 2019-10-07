@@ -9,7 +9,7 @@ namespace PrincessBrideTrivia
         {
             string filePath = GetFilePath();
             Question[] questions = LoadQuestions(filePath);
-
+            
             int numberCorrect = 0;
             for (int i = 0; i < questions.Length; i++)
             {
@@ -83,12 +83,15 @@ namespace PrincessBrideTrivia
                 string correctAnswerIndex = lines[lineIndex + 4];
 
                 Question question = new Question();
+                
                 question.Text = questionText;
                 question.Answers = new string[3];
                 question.Answers[0] = answer1;
                 question.Answers[1] = answer2;
                 question.Answers[2] = answer3;
                 question.CorrectAnswerIndex = correctAnswerIndex;
+
+                questions[i] = question;
             }
             return questions;
         }
