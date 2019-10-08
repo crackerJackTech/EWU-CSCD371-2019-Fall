@@ -56,6 +56,27 @@ namespace PrincessBrideTrivia.Tests
             Assert.IsTrue(File.Exists(filePath));
         }
 
+        [TestMethod]
+        public void LoadQuestions_CheckIfQuestionsAreNullAfterLoading()
+        {
+            string filePath = Path.GetRandomFileName();
+            try
+            { 
+                GenerateQuestionsFile(filePath, 2);
+                
+                Question[] questions = Program.LoadQuestions(filePath);
+
+                foreach(Question question in questions)
+                {
+                    Assert.IsNotNull(question);
+                }
+            }
+            finally
+            {
+                File.Delete(filePath);
+            }
+        }
+
         [DataTestMethod]
         [DataRow(1, 1, "100%")]
         [DataRow(5, 10, "50%")]
