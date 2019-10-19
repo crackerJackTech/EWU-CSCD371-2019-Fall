@@ -6,7 +6,13 @@ namespace Inheritance.Tests
     public class ActorTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ExtensionMethodTest_Raj_WomenArePresentIsTrue()
+        {
+            
+        }
+
+        [TestMethod]
+        public void ExtensionMethodTest_Raj_WomenArePresentIsFalse()
         {
         }
     }
