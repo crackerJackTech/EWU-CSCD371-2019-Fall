@@ -20,6 +20,11 @@ namespace Inheritance
     {
         public static void Print(Item item, TextWriter writer)
         {
+            if(item is null || writer is null)
+            {
+                throw new ArgumentNullException();
+            }
+            
             writer.WriteLine(item.PrintInfo());
         }
     }
