@@ -9,19 +9,10 @@ namespace Logger
             
             if(baseLogger is null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(baseLogger));
             }
 
-            LogLevel log = LogLevel.Error;
-
-            foreach(object obs in message)
-            {
-                baseLogger.Log(log, obs.ToString());
-            }
-
-
-
-            
+            baseLogger.Log(LogLevel.Error, string.Format(logLevel, message));
 
         }
 
@@ -29,17 +20,10 @@ namespace Logger
         {
             if (baseLogger is null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(baseLogger));
             }
 
-            LogLevel log = LogLevel.Warning;
-
-            foreach (object obs in message)
-            {
-                baseLogger.Log(log, obs.ToString());
-            }
-
-            return;
+            baseLogger.Log(LogLevel.Warning, string.Format(logLevel, message));
 
         }
 
@@ -47,17 +31,10 @@ namespace Logger
         {
             if (baseLogger is null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(baseLogger));
             }
 
-            LogLevel log = LogLevel.Information;
-
-            foreach (object obs in message)
-            {
-                baseLogger.Log(log, obs.ToString());
-            }
-
-            return;
+            baseLogger.Log(LogLevel.Warning, string.Format(logLevel, message));
 
         }
 
@@ -65,17 +42,10 @@ namespace Logger
         {
             if (baseLogger is null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(baseLogger));
             }
 
-            LogLevel log = LogLevel.Debug;
-
-            foreach (object obs in message)
-            {
-                baseLogger.Log(log, obs.ToString());
-            }
-
-            return;
+            baseLogger.Log(LogLevel.Debug, string.Format(logLevel, message));
 
         }
     }
