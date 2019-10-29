@@ -1,12 +1,24 @@
-﻿using System;
+﻿using Configuration;
+using Configuration.Tests;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace SampleApp
 {
-    class Program
+    public class Program
     {
-        static void Main()
+
+        public static void Main()
         {
-            Console.WriteLine("Hello World!");
+          
+            MockConfig mockConfig = new MockConfig();
+
+            foreach((string, string?) elements in mockConfig._ConfigData)
+            {
+                mockConfig.GetConfigValue(elements.Item1, out string? value);
+                Console.WriteLine($"{elements.Item1}={value}");
+            }
         }
     }
 }
