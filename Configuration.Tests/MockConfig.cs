@@ -6,11 +6,11 @@ namespace Configuration.Tests
 {
     public class MockConfig : IConfig
     {
-        public List<(string, string?)> _ConfigData { get; }
+        public List<(string, string?)> ConfigData { get; }
 
         public MockConfig()
         {
-            _ConfigData = new List<(string, string?)>
+            ConfigData = new List<(string, string?)>
             {
                 ("testName1", "testValue1"),
                 ("testName2", "testValue2"),
@@ -29,7 +29,7 @@ namespace Configuration.Tests
                 throw new ArgumentNullException(nameof(name));
             }
 
-            foreach ((string, string) element in _ConfigData)
+            foreach ((string, string) element in ConfigData)
             {
                 if(name.Equals(element.Item1))
                 {
@@ -43,12 +43,12 @@ namespace Configuration.Tests
 
         public bool SetConfigValue(string name, string? value)
         {
-            if (name is null)
+            if (name is null || value is null)
             {
                 throw new ArgumentNullException(nameof(name));
             }
 
-            _ConfigData.Add((name, value));
+            ConfigData.Add((name, value));
             return true;
         }
     }

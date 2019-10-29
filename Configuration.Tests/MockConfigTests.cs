@@ -19,5 +19,27 @@ namespace Configuration.Tests
             MockConfig mockConfig = new MockConfig();
             Assert.IsFalse(mockConfig.GetConfigValue(name, out _));
         }
+
+        [TestMethod]
+        [DataRow("testName1", "testValue1")]
+        [DataRow("testName2", "testValue2")]
+        [DataRow("testName3", "testValue3")]
+        [DataRow("testName4", "testValue4")]
+        [DataRow("testName5", "testValue5")]
+        public void MockConfig_EnteringNewValidData_ReturnsTrue(string name, string? value)
+        {
+            MockConfig mockConfig = new MockConfig();
+            Assert.IsTrue(mockConfig.GetConfigValue(name, out _));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void MockConfig_SettingInvalidData()
+        {
+            var mockConfig = new MockConfig();
+            mockConfig.SetConfigValue("testName1", null);
+        }
+
+
     }
 }
