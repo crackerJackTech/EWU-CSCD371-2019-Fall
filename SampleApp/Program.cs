@@ -14,7 +14,7 @@ namespace SampleApp
           
             MockConfig mockConfig = new MockConfig();
 
-            foreach((string, string?) elements in mockConfig._ConfigData)
+            foreach((string, string?) elements in mockConfig.ConfigData)
             {
                 mockConfig.GetConfigValue(elements.Item1, out string? value);
                 Console.WriteLine($"{elements.Item1}={value}");
