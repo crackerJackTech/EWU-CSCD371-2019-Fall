@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 
 namespace Mailbox
 {
     class Program
     {
-        private const int Width = 50;
+        private const int Width = 30;
         private const int Height = 10;
 
-        static void Main(string[] args)
+        static void Main()
         {
             //Main does not need to be unit tested.
             using var dataLoader = new DataLoader(File.Open("Mailboxes.json", FileMode.OpenOrCreate, FileAccess.ReadWrite));
@@ -43,9 +42,9 @@ namespace Mailbox
                         Console.WriteLine("Enter the last name");
                         string lastName = Console.ReadLine();
                         Console.WriteLine("What size?");
-                        if (!Enum.TryParse(Console.ReadLine(), out Size size))
+                        if (!Enum.TryParse(Console.ReadLine(), out Sizes size))
                         {
-                            size = Size.Small;
+                            size = Sizes.Small;
                         }
 
                         if (AddNewMailbox(boxes, firstName, lastName, size) is Mailbox mailbox)
@@ -89,17 +88,91 @@ namespace Mailbox
 
         public static string GetOwnersDisplay(Mailboxes mailboxes)
         {
-            
+            if (mailboxes is null)
+            {
+                throw new ArgumentNullException(nameof(mailboxes));
+            }
+
+            if (mailboxes.Count == 0)
+            {
+                return "There are no mailbox owners";
+            }
+
+            string ownersOfMailboxes = "";
+            foreach (Mailbox mailbox in mailboxes)
+            {
+                ownersOfMailboxes += mailbox.ToString() + "\n";
+            }
+            return ownersOfMailboxes;
         }
 
         public static string GetMailboxDetails(Mailboxes mailboxes, int x, int y)
         {
-            
+            if (mailboxes is null)
+            {
+                throw new ArgumentNullException(nameof(mailboxes));
+            }
+
+            if (x < 0 || x > mailboxes.Width)
+            {
+                throw new ArgumentOutOfRangeException(nameof(x));
+            }
+
+            if (y < 0 || y > mailboxes.Height)
+            {
+                throw new ArgumentOutOfRangeException(nameof(y));
+            }
+
+            foreach (Mailbox mailbox in mailboxes)
+            {
+                if (mailbox.Location == (x, y))
+                {
+#pragma warning disable CS8603 // Possible null reference return.
+                    return mailbox.ToString();
+#pragma warning restore CS8603 // Possible null reference return.
+                }
+            }
+
+            return "";
         }
 
-        public static Mailbox AddNewMailbox(Mailboxes mailboxes, string firstName, string lastName, Size size)
+        public static Mailbox AddNewMailbox(Mailboxes mailboxes, string firstName, string lastName, Sizes size)
         {
-            
+            if (mailboxes is null)
+            {
+                throw new ArgumentNullException(nameof(mailboxes));
+            }
+
+            if (firstName is null)
+            {
+                throw new ArgumentNullException(nameof(firstName));
+            }
+
+            if (lastName is null)
+            {
+                throw new ArgumentNullException(nameof(lastName));
+            }
+
+            var person = new Person(firstName, lastName);
+
+            for (int i = 0; i < mailboxes.Height; i++)
+            {
+                for (int j = 0; j < mailboxes.Width; j++)
+                {
+                    if (!(mailboxes.GetAdjacentPeople(i, j, out HashSet<Person> adjacentPeople)))
+                    {
+                        if (!(adjacentPeople.Contains(person)))
+                        {
+                            Mailbox mailbox = new Mailbox(person, (i, j), size);
+                            return mailbox;
+                        }
+                    }
+                }
+            }
+
+#pragma warning disable CS8603 // Possible null reference return.
+            return null;
+#pragma warning restore CS8603 // Possible null reference return.
         }
     }
 }
