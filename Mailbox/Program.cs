@@ -4,12 +4,12 @@ using System.IO;
 
 namespace Mailbox
 {
-    class Program
+    internal class Program
     {
         private const int Width = 30;
         private const int Height = 10;
 
-        static void Main()
+        public static void Main()
         {
             //Main does not need to be unit tested.
             using var dataLoader = new DataLoader(File.Open("Mailboxes.json", FileMode.OpenOrCreate, FileAccess.ReadWrite));
@@ -68,7 +68,7 @@ namespace Mailbox
                     case 4:
                         Console.WriteLine("Enter box number as x,y");
                         string boxNumber = Console.ReadLine();
-                        string[] parts = boxNumber?.Split(',');
+                        string[] parts = boxNumber.Split(',');
                         if (parts?.Length == 2 &&
                             int.TryParse(parts[0], out int x) &&
                             int.TryParse(parts[1], out int y))
