@@ -16,24 +16,24 @@ Read through Chapters 12 & 13.
 ## Instructions
 
 - Write an `Array<T>` class:
-  - Supports collecting a fixed number of items once instantiated
-  - Has a constructor via which you can specify fixed width.  (Other constructors are welcome.)
+  X - Supports collecting a fixed number of items once instantiated
+  X - Has a constructor via which you can specify fixed width.  (Other constructors are welcome.)
   - Handle null appropriately when items are missing (this is likely a judgement call so justify your answer in the comments.)
   - Throw an exception if an item doesn't exist.
   - Include an index operator
   - Support using foreach over the items in the `Array<T>` class.
   - Support a collection initializer
-  - Implement `System.Collections.Generic.ICollection<T>`
+  X - Implement `System.Collections.Generic.ICollection<T>`
   - Ignore support for multi-dimensional arrays.
-  - Add a `Capacity` property to return the capacity (the value specified in the constructor) of the collection.
-- Add the following list of code analysis assemblies and appropriately handle all warnings: `IntelliTectAnalyzer.dll`,`Microsoft.NetCore.Analyzers.dll`,`Microsoft.CodeQuality.Analyzers.dll`,`Microsoft.NetCore.Analyzers.dll`,`Microsoft.NetFramework.Analyzers.dll`.  Use this list of code analyzers for all assignments in the future.
+  X - Add a `Capacity` property to return the capacity (the value specified in the constructor) of the collection.
+X - Add the following list of code analysis assemblies and appropriately handle all warnings: `IntelliTectAnalyzer.dll`,`Microsoft.NetCore.Analyzers.dll`,`Microsoft.CodeQuality.Analyzers.dll`,`Microsoft.NetCore.Analyzers.dll`,`Microsoft.NetFramework.Analyzers.dll`.  Use this list of code analyzers for all assignments in the future.
 - Choose simplicity over than complexity.
 
 ### As Always
 
 - Fully unit test the Assignment6 library.
 - Run code analysis for all project and appropriately address all warnings.
-- Nullablility should be enabled at the project level for all projects and all warnings should be handled without disabling them.
+X - Nullablility should be enabled at the project level for all projects and all warnings should be handled without disabling them.
 
 ## Extra Credit
 
