@@ -18,13 +18,13 @@ Read through Chapters 12 & 13.
 - Write an `Array<T>` class:
   X - Supports collecting a fixed number of items once instantiated
   X - Has a constructor via which you can specify fixed width.  (Other constructors are welcome.)
-  - Handle null appropriately when items are missing (this is likely a judgement call so justify your answer in the comments.)
-  - Throw an exception if an item doesn't exist.
-  - Include an index operator
-  - Support using foreach over the items in the `Array<T>` class.
-  - Support a collection initializer
+  X - Handle null appropriately when items are missing (this is likely a judgement call so justify your answer in the comments.)
+  X - Throw an exception if an item doesn't exist.
+  X - Include an index operator
+  X - Support using foreach over the items in the `Array<T>` class.
+  X - Support a collection initializer
   X - Implement `System.Collections.Generic.ICollection<T>`
-  - Ignore support for multi-dimensional arrays.
+  X - Ignore support for multi-dimensional arrays.
   X - Add a `Capacity` property to return the capacity (the value specified in the constructor) of the collection.
 X - Add the following list of code analysis assemblies and appropriately handle all warnings: `IntelliTectAnalyzer.dll`,`Microsoft.NetCore.Analyzers.dll`,`Microsoft.CodeQuality.Analyzers.dll`,`Microsoft.NetCore.Analyzers.dll`,`Microsoft.NetFramework.Analyzers.dll`.  Use this list of code analyzers for all assignments in the future.
 - Choose simplicity over than complexity.

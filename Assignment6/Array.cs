@@ -4,71 +4,114 @@ using System.Collections.Generic;
 
 namespace Assignment6
 {
-    public class Array<T> : ICollection<T>
+    public class ArrayCollection<T> : ICollection<T>
     {
-        private List<T> _List;
+        private List<T> List { get; }
         public int Capacity { get; }
-        private int numberOfItemsInArray { get; set; }
+        private int NumberOfItemsInArray { get; set; }
 
-        public int Count => numberOfItemsInArray;
+        public int Count => NumberOfItemsInArray;
 
-        public bool IsReadOnly => throw new NotImplementedException();
+        public bool IsReadOnly => true;
 
         
-        public Array(int size)
+        public ArrayCollection(int size)
         {
             if(size < 0)
             {
                 throw new ArgumentNullException(nameof(size));
             }
-            _List = new List<T>(size);
+            List = new List<T>(size);
             Capacity = size;
+        }
+
+        public T this[int i]
+        {
+            get
+            {
+                if(i > Capacity || i < 0)
+                {
+                    throw new IndexOutOfRangeException(nameof(i));
+                }
+                return List[i];
+            }
+
+            set
+            {
+                List.Add(List[i]);
+            }
         }
 
         public void Add(T item)
         {
-            if(Count == Capacity)
+            if(Count > Capacity || Capacity == 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(_List.Count), "Can't exceed the size of the Array");
+                throw new ArgumentOutOfRangeException(nameof(List.Capacity), "Can't exceed the size of the Array");
             }
             if(item is null)
             {
                 throw new ArgumentNullException(nameof(item));
             }
 
-            _List.Add(item);
-            numberOfItemsInArray++;
+            List.Add(item);
+            NumberOfItemsInArray++;
             
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            List.Clear();
+            NumberOfItemsInArray = 0;
         }
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            if(item is null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
+            if(!List.Contains(item))
+            {
+                throw new ArgumentException("That item doesn't exist in the Array", nameof(item));
+            }
+
+            return List.Contains(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            if(arrayIndex >= Capacity)
+            {
+                throw new ArgumentException("Index value greater than the size of Array", nameof(arrayIndex));
+            }
+            List.CopyTo(array, arrayIndex);
         }
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            if(item is null)
+            {
+                throw new ArgumentNullException(nameof(item), "Item not removed because item is not contained in the Array");
+            }
+
+            if(List.Remove(item))
+            {
+                NumberOfItemsInArray--;
+                return true;
+            }
+
+            return false;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return List.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }
