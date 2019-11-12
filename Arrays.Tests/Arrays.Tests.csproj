@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <nullable>enable</nullable>
+    <NoWarn>CA1303,CA2208,CA1065</NoWarn>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
