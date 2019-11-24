@@ -18,23 +18,23 @@ Read through Chapters 15 & 17 (16 is optional)
 
 1. Implement the `ISampleData.CsvRows` property, loading the data from the `People.csv` file and returning each line as a single string.
 
-- Change the "Copy to" property on People.csv to "Copy if newer" so that the file is deployed along with your test project.
-- Using LINQ, skip the first row in the `People.csv`.
-- Be sure to appropriately handle resource (`IDisposable`) items correctly if applicable (and it may not be depending on how you implement it).
+X - Change the "Copy to" property on People.csv to "Copy if newer" so that the file is deployed along with your test project.
+X - Using LINQ, skip the first row in the `People.csv`.
+? - Be sure to appropriately handle resource (`IDisposable`) items correctly if applicable (and it may not be depending on how you implement it).
 
 1. Implement `IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()` to return a **sorted**, **unique** list of states.
 
-- Use `ISampleData.CsvRows` for your data source.
-- Don't forget the list should be unique.
-- Sort the list alphabetically
-- Include a test that leverages a hard coded list of Spokane based addresses.
-- Include a test that uses LINQ to verify the data is sorted correctly (do not use a hard coded list).
+X - Use `ISampleData.CsvRows` for your data source.
+X - Don't forget the list should be unique.
+X - Sort the list alphabetically
+---------------------------------------------------------- Include a test that leverages a hard coded list of Spokane based addresses.
+X - Include a test that uses LINQ to verify the data is sorted correctly (do not use a hard coded list).
 
 1. Implement `ISampleData.GetAggregateSortedListOfStatesUsingCsvRows()` to return a `string` that contains a **unique**, comma separated list of states.
 
-- Use `ISampleData.GetUniqueSortedListOfStatesGivenCsvRows` for your data source.
-- Consider "selecting" only the states and calling `ToArray()` to retrieve an array of all the state names.
-- Given the array, consider using `string.Join` to combine the list into a single string.
+X - Use `ISampleData.GetUniqueSortedListOfStatesGivenCsvRows` for your data source.
+X - Consider "selecting" only the states and calling `ToArray()` to retrieve an array of all the state names.
+X - Given the array, consider using `string.Join` to combine the list into a single string.
 
 1. Implement the `ISampleData.People` property to return all the items in `People.csv` as `Person` objects
 
