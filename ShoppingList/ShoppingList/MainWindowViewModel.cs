@@ -27,7 +27,7 @@ namespace ShoppingList
         public string Item
         {
             get => _Item;
-            set => SetProperty(ref _Item, value, "Item");
+            set => SetProperty(ref _Item, value, nameof(Item));
         }
 
         private ShoppingListItem _SelectedListItem;
